@@ -11,7 +11,7 @@ marker = "<!-- ───────── Title ───────── -->
 head_assets, body = src.split(marker, 1)
 body = marker + body
 
-URL = "https://geonyeongppark.github.io/beyond-accuracy/"
+URL = "https://beyond-accuracy.github.io/"
 TITLE = "Beyond Accuracy: Auditing Agent-Removal Sensitivity in Motion Forecasting"
 DESC = ("NeurIPS 2026 E&D Track. Which surrounding agents does a motion forecast depend on? "
         "Leave-one-out agent removal audits five models on Argoverse 2 and Waymo.")
