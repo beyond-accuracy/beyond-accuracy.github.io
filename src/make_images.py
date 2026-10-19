@@ -10,7 +10,7 @@ import fitz  # PyMuPDF
 
 JOBS = {  # page image: (paper figure PDF, width in px)
     "overview.png": ("Fig_Overview_Cute_Comic.pdf", 2000),      # Fig. 1
-    "protocol.png": ("Teaser_v11_ppt.pdf", 2000),               # Fig. 3
+    "protocol.png": ("Teaser_v12_ppt.pdf", 2000),               # Fig. 3
     "validation.png": ("Fig_Validation_Summary_camera_ready.pdf", 1800),  # Fig. 4
     "f1_heatmap.png": ("Fig2_Heatmap.pdf", 1600),               # Fig. 5
     "f2_prec1.png": ("Fig_F2_combined_a.pdf", 1100),            # Fig. 6a
