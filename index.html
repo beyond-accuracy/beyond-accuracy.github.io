@@ -62,15 +62,26 @@
   .axis-primary { background: #eef5fc; border: 1px solid #cfe2f5; }
   .axis-secondary { background: #f7f1ee; border: 1px solid #ead9d1; }
   .axis-card h4 { font-family: 'Google Sans', sans-serif; font-weight: 700; margin-bottom: 0.35rem; }
-  .katex-display { margin: 1rem 0 1.1rem; }
+  .katex-display { margin: 1rem 0 1.1rem; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+  .fig a.zoom { display: block; cursor: zoom-in; }
+  .fig-hint { display: none; font-size: 0.85rem; color: #777; text-align: center; margin-top: 0.4rem; }
   pre, .content pre { white-space: pre-wrap; word-break: break-word; overflow-x: visible; }
   pre, code { font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', 'Courier New', monospace; }
   .footer { padding: 2.5rem 1.5rem 3rem; }
 
   @media screen and (max-width: 768px) {
-    .publication-title.is-1 { font-size: 2.1rem; }
-    .title-sub { font-size: 0.8em; }
+    .publication-title.is-1 { font-size: 1.9rem; }
+    /* car above the title, so "Beyond Accuracy:" stays on one line */
+    .title-mark { display: flex; width: fit-content; margin: 0 auto 8px; }
+    .title-brand { font-size: 1.15em; white-space: nowrap; }
+    .title-sub { font-size: 0.8em; text-wrap: balance; }
+    .title-sub br { display: none; }
     .tagline { font-size: 1rem; }
+    /* justified text leaves wide gaps in a narrow column */
+    .has-text-justified { text-align: left !important; }
+    /* the long display equation: smaller, and scrolls inside itself if still too wide */
+    .katex-display > .katex { font-size: 0.82em; }
+    .fig-hint { display: block; }
   }
 </style>
 </head>
@@ -87,7 +98,7 @@
               <span class="title-bar"><i style="background:#1F77B4"></i><i style="background:#FF7F0E"></i><i style="background:#2CA02C"></i><i style="background:#D62728"></i><i style="background:#9467BD"></i></span>
             </span>
             <span class="title-brand"><span class="c-beyond">Beyond</span> <span class="c-accuracy">Accuracy</span>:</span>
-            <span class="title-sub">Auditing Agent-Removal Sensitivity<br>in Motion Forecasting</span>
+            <span class="title-sub">Auditing <span style="white-space:nowrap">Agent-Removal</span> Sensitivity <br>in Motion Forecasting</span>
           </h1>
           <div class="is-size-5 publication-venue">NeurIPS 2026 · E&amp;D Track</div>
 
@@ -377,6 +388,22 @@
   </div>
 </footer>
 
+<script>
+  // Tap or click a figure to open the full-size image (pinch-zoom on phones).
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.fig img').forEach(function (img, k) {
+      var a = document.createElement('a');
+      a.href = img.getAttribute('src'); a.target = '_blank'; a.rel = 'noopener'; a.className = 'zoom';
+      a.title = 'Open the full-size figure';
+      img.parentNode.insertBefore(a, img); a.appendChild(img);
+      if (k === 0) {
+        var hint = document.createElement('div');
+        hint.className = 'fig-hint'; hint.textContent = 'Tap a figure to open it full size.';
+        a.parentNode.insertBefore(hint, a.nextSibling);
+      }
+    });
+  });
+</script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
